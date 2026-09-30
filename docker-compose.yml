@@ -1,0 +1,13 @@
+services:
+  find-it:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file: .env
+    volumes:
+      - findit-data:/app/data
+      - findit-uploads:/app/uploads
+    restart: unless-stopped
+volumes:
+  findit-data:
+  findit-uploads:

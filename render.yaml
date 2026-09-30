@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: find-it-zimbabwe
+    runtime: node
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: LOOKUP_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: DB_FILE
+        value: /var/data/findit.sqlite
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+    disk:
+      name: find-it-data
+      mountPath: /var/data
+      sizeGB: 1
